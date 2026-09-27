@@ -22,7 +22,7 @@ def _set_sqlite_pragmas(dbapi_connection, connection_record):
 
 # 数据库实例
 db = SQLAlchemy()
-# eventlet 模式必须在应用入口最先 monkey_patch，否则所有阻塞调用会卡死
+# gevent 模式必须在应用入口最先 monkey_patch，否则所有阻塞调用会卡死
 # 事件循环；默认 threading 模式无需补丁，本地开发更稳
 socketio = SocketIO(
     cors_allowed_origins="*",

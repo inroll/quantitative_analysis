@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 """应用启动入口。
 
-SOCKETIO_ASYNC_MODE=eventlet 时必须先 monkey_patch 再导入应用模块
+SOCKETIO_ASYNC_MODE=gevent 时必须先 monkey_patch 再导入应用模块
 （阻塞调用依赖补丁协作），因此这段逻辑放在所有 app 导入之前。
 """
 
 import os
 
-if os.getenv('SOCKETIO_ASYNC_MODE', 'threading') == 'eventlet':
-    import eventlet
+if os.getenv('SOCKETIO_ASYNC_MODE', 'threading') == 'gevent':
+    from gevent import monkey
 
-    eventlet.monkey_patch()
+    monkey.patch_all()
 
 from app import create_app
 from app.extensions import socketio

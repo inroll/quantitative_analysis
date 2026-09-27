@@ -5,7 +5,7 @@ services:
       - DATA_DIR=/app/data
       - SQLITE_DATABASE_PATH=/app/instance/stock_cursor.sqlite3
       - FLASK_ENV=production
-      - SOCKETIO_ASYNC_MODE=eventlet
+      - SOCKETIO_ASYNC_MODE=gevent
       - CORS_ORIGINS=${CORS_ORIGINS:-*}
     env_file:
       - .env
